@@ -1,0 +1,14 @@
+{
+    "title": "Software Development Engineer",
+    "date": "07/2021 - 07/2023",
+    "place": "Jio Platforms",
+    "location": "Hyderabad, India",
+    "work": ["Developed Content Curating Service, automating the process of scraping health-related web content. Devised a Python script that effectively reduced manual effort by 30% when provided with a base URL.",
+                "Successfully led the migration of legacy systems to a modern architecture, resulting in a remarkable 20% cost reduction and a 15% increase in overall operational efficiency.",
+                "Designed and implemented an authentication and authorization service, ensuring access control for users seeking Jio Health services.",
+                "Crafted robust APIs, enabling the seamless onboarding of 500+ new providers and facilities. Resulted in a 60% reduction in onboarding time, alongside fortified security through Keycloak integration.",
+                "Led the development of an encryption service to enhance client-side data security, resulting in widespread adoption by multiple web applications.",
+                "Significantly improved system performance by efficiently configuring Redis Cache, reducing response times by an impressive 30%.",
+                "Utilized Azure Kubernetes Services to optimize application deployment and maintenance.",
+                "Improved API performance through strategic coding, consolidating multiple database calls into single queries for a notable boost in system efficiency."]
+}

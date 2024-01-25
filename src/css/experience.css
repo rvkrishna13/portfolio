@@ -1,0 +1,21 @@
+.experiences {
+    width: 100%;
+}
+
+.experience {
+    width:75%;
+    /* align-items: center; */
+}
+
+.heading {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.place {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}

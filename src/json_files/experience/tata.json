@@ -1,0 +1,9 @@
+{
+    "title": "Software Development Intern",
+    "date": "05/2020 - 08/2020",
+    "place": "Tata Consultancy Services",
+    "location": "Hyderabad, India",
+    "work": ["Built a user-friendly web application using Django (Python framework), streamlining dataset uploads and automating optimal classification model selection.",
+                "Employed fixed set of machine learning algorithms to effectively identify optimal model for provided dataset.",
+                "Contributed to improving the user interface and overall experience, receiving positive feedback from team members for application’s efficiency and usability."]
+}

@@ -1,0 +1,67 @@
+
+
+.fixed {
+    background-color: brown;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.name {
+    margin-top: 1%;
+    margin-left: 3%;
+    margin-bottom: 1%;
+    display: flex;  
+    align-items: center;
+    font-size: larger;
+}
+
+.name a{
+    text-decoration: none;
+    color: black;
+}
+
+.button {
+    margin-top: 1%;
+    margin-right: 3%;
+    margin-bottom: 1%;
+    display: flex;
+    align-items: center;
+}
+
+.button button{
+    width: 150px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: large;
+}
+
+.button-text {
+    cursor: pointer;
+}
+
+.split {
+    margin: 10%;
+    margin-top: 2%;
+    border: 2px solid;
+    display: flex;
+    background-color: white;
+}
+
+.image {
+    flex: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    flex: 70%;
+}
+
+.image img {
+    max-width: 100%; /* Limit the maximum width of the image to its container's width */
+    height: 50%; /* Maintain aspect ratio */
+}
