@@ -1,67 +1,9 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { useMutation } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import { Mail, Phone, Linkedin, Github, Send, Check, Loader2 } from "lucide-react";
+import { Mail, Phone, Linkedin, Github, Code, Users, Handshake } from "lucide-react";
 import { portfolioData } from "@/lib/portfolio-data";
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
 export default function ContactSection() {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const { toast } = useToast();
-
-  const contactMutation = useMutation({
-    mutationFn: (data: ContactFormData) => apiRequest("POST", "/api/contact", data),
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    },
-    onError: (error) => {
-      toast({
-        title: "Failed to send message",
-        description: error.message || "Please try again later.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      toast({
-        title: "Please fill in all fields",
-        description: "All fields are required to send your message.",
-        variant: "destructive",
-      });
-      return;
-    }
-    contactMutation.mutate(formData);
-  };
-
-  const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
-
   return (
     <section className="min-h-screen">
       <motion.h1
@@ -74,7 +16,7 @@ export default function ContactSection() {
       </motion.h1>
 
       <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Info */}
           <motion.div
             className="space-y-6"
@@ -82,7 +24,7 @@ export default function ContactSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="text-center md:text-left">
+            <div className="text-center lg:text-left">
               <motion.h2
                 className="text-2xl font-bold mb-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -155,116 +97,83 @@ export default function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Collaboration Message */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Card className="shadow-lg">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                  >
-                    <Label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
-                      required
-                      className="w-full transition-colors focus:ring-2 focus:ring-blue-500"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                  >
-                    <Label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      required
-                      className="w-full transition-colors focus:ring-2 focus:ring-blue-500"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 }}
-                  >
-                    <Label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
-                      Subject
-                    </Label>
-                    <Input
-                      id="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={(e) => handleInputChange("subject", e.target.value)}
-                      required
-                      className="w-full transition-colors focus:ring-2 focus:ring-blue-500"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
-                  >
-                    <Label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                      Message
-                    </Label>
-                    <Textarea
-                      id="message"
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
-                      required
-                      className="w-full transition-colors focus:ring-2 focus:ring-blue-500 resize-none"
-                    />
-                  </motion.div>
-
-                  <motion.div
+            <Card className="shadow-lg h-full">
+              <CardContent className="p-8 flex flex-col justify-center h-full">
+                <motion.div
+                  className="text-center space-y-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <div className="flex justify-center space-x-4 mb-6">
+                    <motion.div
+                      className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.6 }}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <Code className="text-blue-600" size={32} />
+                    </motion.div>
+                    <motion.div
+                      className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.7 }}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <Users className="text-green-600" size={32} />
+                    </motion.div>
+                    <motion.div
+                      className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.8 }}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <Handshake className="text-purple-600" size={32} />
+                    </motion.div>
+                  </div>
+                  
+                  <motion.h3
+                    className="text-2xl font-bold text-slate-800"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.9 }}
                   >
-                    <Button
-                      type="submit"
-                      disabled={contactMutation.isPending}
-                      className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors transform hover:scale-105 duration-200 flex items-center justify-center"
-                    >
-                      {contactMutation.isPending ? (
-                        <>
-                          <Loader2 className="mr-2 animate-spin" size={20} />
-                          Sending...
-                        </>
-                      ) : contactMutation.isSuccess ? (
-                        <>
-                          <Check className="mr-2" size={20} />
-                          Sent!
-                        </>
-                      ) : (
-                        <>
-                          <Send className="mr-2" size={20} />
-                          Send Message
-                        </>
-                      )}
-                    </Button>
+                    Ready to Build Something Amazing?
+                  </motion.h3>
+                  
+                  <motion.p
+                    className="text-lg text-slate-600 leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.0 }}
+                  >
+                    I'm actively seeking opportunities to collaborate on innovative projects, 
+                    contribute to impactful solutions, and work with talented teams. 
+                    Whether it's full-time roles, consulting, or open-source contributions, 
+                    I'm excited to bring my expertise in full-stack development and 
+                    system architecture to your next big idea.
+                  </motion.p>
+                  
+                  <motion.div
+                    className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.1 }}
+                  >
+                    <p className="text-sm text-slate-700 font-medium">
+                      ✨ Let's connect and explore how we can create something extraordinary together!
+                    </p>
                   </motion.div>
-                </form>
+                </motion.div>
               </CardContent>
             </Card>
           </motion.div>
