@@ -28,7 +28,7 @@ export default function Navigation({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-xl font-bold text-blue-600">VKR</h1>
+            <h1 className="text-xl font-bold text-blue-600">VENKATA KRISHNA RAVI</h1>
           </motion.div>
 
           {/* Desktop Navigation */}
