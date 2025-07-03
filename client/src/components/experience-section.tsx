@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { portfolioData } from "@/lib/portfolio-data";
-import TimelineItem from "@/components/timeline-item";
+import { Briefcase, Brain, Code, Heart, MapPin, Calendar, TrendingUp } from "lucide-react";
+
+const iconMap = {
+  blue: Briefcase,
+  green: Brain,
+  amber: Code,
+  purple: Heart,
+};
 
 export default function ExperienceSection() {
   return (
@@ -19,27 +28,99 @@ export default function ExperienceSection() {
         </p>
       </motion.div>
 
-      <div className="relative max-w-6xl mx-auto">
-        {/* Timeline Line */}
-        <motion.div
-          className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-200 via-purple-200 to-blue-200"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          style={{ transformOrigin: "top" }}
-        />
-
-        {/* Timeline Items */}
-        <div className="space-y-20">
-          {portfolioData.experience.map((exp, index) => (
-            <TimelineItem
+      <div className="max-w-4xl mx-auto space-y-8">
+        {portfolioData.experience.map((exp, index) => {
+          const IconComponent = iconMap[exp.color as keyof typeof iconMap] || Briefcase;
+          
+          return (
+            <motion.div
               key={`${exp.company}-${exp.period}`}
-              experience={exp}
-              index={index}
-              isLeft={index % 2 === 0}
-            />
-          ))}
-        </div>
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="shadow-xl border-0 overflow-hidden bg-white">
+                {/* Header with company branding */}
+                <div className={`h-2 bg-gradient-to-r from-${exp.color}-400 to-${exp.color}-600`} />
+                
+                <CardContent className="p-8">
+                  {/* Company and role header */}
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className={`w-16 h-16 bg-${exp.color}-100 rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                      <IconComponent className={`text-${exp.color}-600`} size={28} />
+                    </div>
+                    
+                    <div className="flex-1 text-left">
+                      <h3 className={`text-2xl font-bold text-${exp.color}-700 mb-1`}>
+                        {exp.title}
+                      </h3>
+                      <h4 className="text-xl font-semibold text-slate-800 mb-3">
+                        {exp.company}
+                      </h4>
+                      
+                      <div className="flex flex-wrap gap-4 text-slate-600">
+                        <div className="flex items-center gap-2">
+                          <Calendar size={16} />
+                          <span className="font-medium">{exp.period}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin size={16} />
+                          <span className="font-medium">{exp.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Achievements */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 mb-4">
+                      <TrendingUp className={`text-${exp.color}-600`} size={20} />
+                      <h5 className="text-lg font-semibold text-slate-800">
+                        Key Achievements
+                      </h5>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      {exp.highlights.map((highlight, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: 0.3 + index * 0.2 + i * 0.1 }}
+                          className="flex items-start gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-slate-100 transition-colors"
+                        >
+                          <div className={`w-2 h-2 bg-${exp.color}-500 rounded-full mt-2 flex-shrink-0`} />
+                          <p className="text-slate-700 leading-relaxed font-medium text-left">
+                            {highlight}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer with achievement count */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.6 + index * 0.2 }}
+                    className="mt-6 pt-6 border-t border-slate-200 flex justify-between items-center"
+                  >
+                    <Badge 
+                      variant="secondary" 
+                      className={`bg-${exp.color}-50 text-${exp.color}-700 border-${exp.color}-200 text-sm`}
+                    >
+                      {exp.highlights.length} Key Achievements
+                    </Badge>
+                    <div className="text-sm text-slate-500 font-medium">
+                      {index === 0 ? "Current Role" : `${portfolioData.experience.length - index} roles ago`}
+                    </div>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
