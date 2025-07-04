@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Venkata Krishna Ravi",
     title: "Full Stack Software Engineer",
-    email: "venkatakrishna.ravi@stonybrook.edu",
+    email: "rvkrishna0526@gmail.com",
     phone: "+1 631-435-5912",
     linkedin: "https://linkedin.com/in/venkata-krishna-ravi-b6903a195/",
     github: "https://github.com/rvkrishna13",

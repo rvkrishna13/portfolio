@@ -26,7 +26,7 @@ export default function Portfolio() {
   const renderTabContent = () => {
     switch (activeTab) {
       case "about":
-        return <AboutSection />;
+        return <AboutSection onTabChange={setActiveTab} />;
       case "experience":
         return <ExperienceSection />;
       case "education":
@@ -38,7 +38,7 @@ export default function Portfolio() {
       case "contact":
         return <ContactSection />;
       default:
-        return <AboutSection />;
+        return <AboutSection onTabChange={setActiveTab} />;
     }
   };
 

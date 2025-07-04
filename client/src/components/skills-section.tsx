@@ -16,7 +16,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section className="min-h-screen">
+    <section id="skills" className="min-h-screen">
       <motion.h1
         className="text-4xl font-bold text-center mb-12"
         initial={{ opacity: 0, y: 20 }}

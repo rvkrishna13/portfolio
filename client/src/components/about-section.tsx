@@ -3,8 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, Mail, Phone, Linkedin, Github, User, Code, Rocket, GraduationCap, Star, Award, Zap, Sparkles, Target, TrendingUp } from "lucide-react";
 import { portfolioData } from "@/lib/portfolio-data";
+import { TabType } from "@/pages/portfolio";
 
-export default function AboutSection() {
+interface AboutSectionProps {
+  onTabChange?: (tab: TabType) => void;
+}
+
+export default function AboutSection({ onTabChange }: AboutSectionProps) {
   const handleDownloadResume = () => {
     // Create a download link for the resume
     const link = document.createElement('a');
@@ -14,9 +19,14 @@ export default function AboutSection() {
   };
 
   const handleContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    if (onTabChange) {
+      onTabChange('contact');
+    }
+  };
+
+  const handleStatClick = (section: string) => {
+    if (onTabChange) {
+      onTabChange(section as TabType);
     }
   };
 
@@ -141,21 +151,24 @@ export default function AboutSection() {
                 title: "3+ Years", 
                 subtitle: "Professional Experience", 
                 bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
-                description: "Building scalable systems"
+                description: "Building scalable systems",
+                section: "experience"
               },
               { 
                 icon: Rocket, 
                 title: "15+ Technologies", 
                 subtitle: "Technical Expertise", 
                 bgColor: "bg-gradient-to-br from-green-500 to-green-600",
-                description: "Full-stack development"
+                description: "Full-stack development",
+                section: "skills"
               },
               { 
                 icon: GraduationCap, 
                 title: "MS CS", 
                 subtitle: "Stony Brook University", 
                 bgColor: "bg-gradient-to-br from-amber-500 to-amber-600",
-                description: "Advanced computer science"
+                description: "Advanced computer science",
+                section: "education"
               },
             ].map((stat, index) => (
               <motion.div
@@ -168,7 +181,10 @@ export default function AboutSection() {
                   y: -5,
                   transition: { duration: 0.2 }
                 }}
-                className="group relative p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 border border-slate-100"
+                className="group relative p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 border border-slate-100 cursor-pointer"
+                onClick={() => {
+                  handleStatClick(stat.section);
+                }}
               >
                 {/* Background gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -182,18 +198,41 @@ export default function AboutSection() {
                     <stat.icon className="text-white text-2xl" size={32} />
                   </motion.div>
                   
-                  <div>
+                  <div className="flex-1">
                     <motion.h4 
-                      className="text-xl font-bold text-slate-900 mb-1"
+                      className="text-xl font-bold text-slate-900 mb-1 group-hover:text-slate-800 transition-colors"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
                       {stat.title}
                     </motion.h4>
-                    <p className="text-base font-semibold text-slate-700 mb-1">{stat.subtitle}</p>
-                    <p className="text-sm text-slate-600">{stat.description}</p>
+                    <p className="text-base font-semibold text-slate-700 mb-1 group-hover:text-slate-600 transition-colors">{stat.subtitle}</p>
+                    <p className="text-sm text-slate-600 group-hover:text-slate-500 transition-colors">{stat.description}</p>
                   </div>
+                  
+                  {/* Arrow indicator */}
+                  <motion.div
+                    className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <svg 
+                      className="w-3 h-3 text-slate-600" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M9 5l7 7-7 7" 
+                      />
+                    </svg>
+                  </motion.div>
                 </div>
+                
+                {/* Subtle border animation */}
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300" />
               </motion.div>
             ))}
           </motion.div>

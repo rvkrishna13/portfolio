@@ -32,7 +32,7 @@ const colorMap = {
 
 export default function EducationSection() {
   return (
-    <section className="min-h-screen py-16">
+    <section id="education" className="min-h-screen py-16">
       <motion.div
         className="text-center mb-20"
         initial={{ opacity: 0, y: 30 }}
