@@ -108,52 +108,40 @@ export const portfolioData = {
   
   projects: [
     {
-      title: "Microservices Migration",
-      description: "Led migration from monolithic to microservices architecture using Spring Boot and Docker, improving scalability by 60%.",
-      technologies: ["Spring Boot", "Docker", "Microservices"],
-      company: "Jio Platforms",
-      icon: "cubes",
-      color: "blue"
-    },
-    {
-      title: "Neural Simulation Interface",
-      description: "Built interactive drag-and-drop simulation interface for neuron circuit modeling using Vue.js and JointJS.",
-      technologies: ["Vue.js", "JointJS", "JavaScript"],
-      company: "Neuroblox",
+      title: "RAG-based Question Answering System",
+      description: "A powerful Retrieval Augmented Generation (RAG) system built with Google Gemini and LangChain that can answer questions based on PDF documents. Demonstrates intelligent question-answering combining LLMs with document retrieval.",
+      technologies: ["Python", "LangChain", "Google Gemini", "RAG", "Vector Embeddings"],
+      company: "Personal Project",
       icon: "brain",
-      color: "green"
+      color: "blue",
+      github: "https://github.com/rvkrishna13/rag_based_qa"
     },
     {
-      title: "Job Application Automation",
-      description: "Developed React/TypeScript browser extension to automate job applications, reducing user effort by 45%.",
-      technologies: ["React", "TypeScript", "Extension"],
-      company: "Vibesea",
+      title: "AI Text Summarizer",
+      description: "Modern web application providing intelligent text summarization using AI models. Built with Vue.js frontend and FastAPI backend, powered by Ollama for local AI processing with role-based summaries.",
+      technologies: ["Vue.js", "FastAPI", "Python", "Ollama", "AI/ML"],
+      company: "Personal Project",
       icon: "robot",
-      color: "amber"
+      color: "green",
+      github: "https://github.com/rvkrishna13/text_summarizer"
     },
     {
-      title: "Real-time Job Alert System",
-      description: "Built Node.js and Kafka-based backend for near-real-time job alerts across 10K+ listings daily.",
-      technologies: ["Node.js", "Kafka", "Real-time"],
-      company: "Vibesea",
-      icon: "bell",
-      color: "purple"
+      title: "Wikipedia Agent with LangGraph",
+      description: "Conversational AI agent using LangGraph and MCP (Model Context Protocol) to search Wikipedia with tool-based architecture. Demonstrates multi-turn interactions with tool calling and LangChain composition.",
+      technologies: ["Python", "LangGraph", "MCP", "Wikipedia API", "LangChain"],
+      company: "Personal Project",
+      icon: "brain",
+      color: "purple",
+      github: "https://github.com/rvkrishna13/MCP_Wikipedia_Search"
     },
     {
-      title: "Healthcare API Platform",
-      description: "Built secure REST API microservice using FastAPI achieving 99.9% uptime for healthcare provider onboarding.",
-      technologies: ["FastAPI", "REST API", "Healthcare"],
-      company: "Jio Platforms",
-      icon: "heartbeat",
-      color: "red"
-    },
-    {
-      title: "Observability Platform",
-      description: "Implemented OpenTelemetry instrumentation for structured logs and metrics, reducing issue triage time by 25%.",
-      technologies: ["OpenTelemetry", "Monitoring", "Metrics"],
-      company: "Remit2Any",
-      icon: "chart-line",
-      color: "teal"
+      title: "Exokernel Operating System",
+      description: "Low-level operating system implementation in C demonstrating exokernel architecture principles. Features custom memory management, process scheduling, and system call handling.",
+      technologies: ["C", "Operating Systems", "Systems Programming", "Memory Management"],
+      company: "Academic Project",
+      icon: "cubes",
+      color: "red",
+      github: "https://github.com/rvkrishna13/exokernel"
     }
   ]
 };

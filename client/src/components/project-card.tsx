@@ -36,11 +36,42 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     >
       <Card className="shadow-lg overflow-hidden h-full transition-shadow duration-300 hover:shadow-xl">
         <motion.div
-          className={`h-48 bg-gradient-to-br from-${project.color}-500 to-${project.color}-700 flex items-center justify-center`}
+          className={`h-32 bg-gradient-to-br from-${project.color}-500 to-${project.color}-700 flex items-center justify-center`}
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         >
-          <IconComponent className="text-white text-6xl" size={96} />
+          <div className="relative">
+            {/* Colored background circle for icon */}
+            <motion.div
+              className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+              style={{
+                background: project.color === 'blue' ? 'linear-gradient(135deg, #3B82F6, #1D4ED8)' :
+                           project.color === 'green' ? 'linear-gradient(135deg, #10B981, #059669)' :
+                           project.color === 'purple' ? 'linear-gradient(135deg, #8B5CF6, #7C3AED)' :
+                           project.color === 'red' ? 'linear-gradient(135deg, #EF4444, #DC2626)' :
+                           project.color === 'amber' ? 'linear-gradient(135deg, #F59E0B, #D97706)' :
+                           project.color === 'teal' ? 'linear-gradient(135deg, #14B8A6, #0D9488)' :
+                           'linear-gradient(135deg, #3B82F6, #1D4ED8)'
+              }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <IconComponent className="text-white text-2xl drop-shadow-lg" size={40} />
+            </motion.div>
+            
+            {/* Glow effect around the icon */}
+            <div 
+              className="absolute inset-0 rounded-full blur-md opacity-30"
+              style={{
+                background: project.color === 'blue' ? '#3B82F6' :
+                           project.color === 'green' ? '#10B981' :
+                           project.color === 'purple' ? '#8B5CF6' :
+                           project.color === 'red' ? '#EF4444' :
+                           project.color === 'amber' ? '#F59E0B' :
+                           project.color === 'teal' ? '#14B8A6' :
+                           '#3B82F6'
+              }}
+            />
+          </div>
         </motion.div>
         <CardContent className="p-6">
           <motion.h3

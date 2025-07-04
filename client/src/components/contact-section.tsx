@@ -69,8 +69,8 @@ export default function ContactSection() {
                 {
                   icon: Github,
                   title: "GitHub",
-                  value: "github.com/rvkrishna13",
-                  href: portfolioData.personal.github,
+                  value: "View my projects",
+                  href: "https://github.com/rvkrishna13",
                   color: "gray",
                 },
               ].map((contact, index) => (
